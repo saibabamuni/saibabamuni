@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Appenders>
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%m"/>
+        </Console>
+        <SplunkHttp
+                name="splunklog"
+                url="http://localhost:8088"
+                host="localhost"
+                source="sai_splunk_log"
+                sourcetype="log4j"
+                token="0e3d1d5a-4bbe-4c8c-995d-3706e9fa82b0"
+                index="sai_splunk_index"
+                messageFormat="text"
+                batch_size_count="1"
+                type="raw"
+                disableCertificateValidation="true">
+
+            <PatternLayout pattern="%m"/>
+        </SplunkHttp>
+
+    </Appenders>
+
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="splunklog"/>
+            <AppenderRef ref="console"/>
+        </Root>
+    </Loggers>
+</Configuration>
